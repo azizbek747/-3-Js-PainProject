@@ -9,6 +9,8 @@ const colorBtns = document.querySelectorAll(".colors .option");
 const colorPicker = document.querySelector("#color-picker");
 const clearBtn = document.querySelector(".clear-canvas");
 const saveBtn = document.querySelector(".save-image");
+const bgColorPicker = document.querySelector("#bg-color-picker");
+const bgImagePicker = document.querySelector("#bg-image-picker");
 
 // Settings
 let selectedTool = "brush";
@@ -17,8 +19,31 @@ let brushSize = 5;
 let selectedColor = "#000";
 let prevMouseX, prevMouseY, snapshot;
 
+window.addEventListener("load", () => {
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+});
+
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
+
+// Fon rasmi qo'shish
+bgImagePicker.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    const img = new Image();
+    img.src = reader.result;
+    img.onload = () => {
+      // Kichiklash yoki o'lchamga moslash
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+  };
+  reader.readAsDataURL(file);
+});
 
 // Drawing start
 const startDraw = (e) => {
@@ -109,6 +134,8 @@ colorPicker.addEventListener("input", () => {
 // Tozalash
 clearBtn.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#ffffff"; // oq fon
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 });
 
 // Saqlash

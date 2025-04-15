@@ -12,6 +12,12 @@
         <canvas></canvas>
       </section>
       <section class="tools-board">
+       
+
+        <div class="row">
+          <h4 class="title">Fon rasmi</h4>
+          <input type="file" id="bg-image-picker" accept="image/*" />
+        </div>
         <div class="row">
           <h4 class="title">Shakllar</h4>
           <ul class="options">
@@ -28,10 +34,9 @@
               <label for="triangle">Uchburchak</label>
             </li>
             <li class="option tool" id="fill-color">
-              <input type="checkbox">
+              <input type="checkbox" />
               <label for="fill-color">Rangni to'ldirish</label>
             </li>
-            
           </ul>
         </div>
 
@@ -39,7 +44,7 @@
           <h4 class="title">Variantlar</h4>
 
           <ul class="options">
-            <li class="option tool active" id="brush" >
+            <li class="option tool active" id="brush">
               <img src="icons/brush.svg" alt="brush" />
               <label for="brush">Chizish</label>
             </li>
@@ -47,8 +52,8 @@
               <img src="icons/eraser.svg" alt="eraser" />
               <label for="eraser">O'chirish</label>
             </li>
-            <li class="option"  >
-              <input type="range" id="size-slider" min="1" max="30" value="5" >
+            <li class="option">
+              <input type="range" id="size-slider" min="1" max="30" value="5" />
             </li>
           </ul>
         </div>
@@ -64,11 +69,10 @@
             <li class="option" id="orange"></li>
             <li class="option" id="yellow"></li>
             <li class="option" id="pink"></li>
-            
           </ul>
 
           <div>
-            <input type="color" id="color-picker" value="#000000">
+            <input type="color" id="color-picker" value="#000000" />
           </div>
         </div>
 
