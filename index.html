@@ -12,8 +12,6 @@
         <canvas></canvas>
       </section>
       <section class="tools-board">
-       
-
         <div class="row">
           <h4 class="title">Fon rasmi</h4>
           <input type="file" id="bg-image-picker" accept="image/*" />
@@ -70,12 +68,23 @@
             <li class="option" id="yellow"></li>
             <li class="option" id="pink"></li>
           </ul>
-
-          <div>
-            <input type="color" id="color-picker" value="#000000" />
-          </div>
         </div>
 
+        <div class="row redoUndo">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <input type="color" id="color-picker" value="#000000" style="margin-top: 0;"/>
+            <div>
+              <button class="undo" title="orqaga"><img src="https://cdn-icons-png.flaticon.com/512/109/109618.png" alt=""></button>
+              <button class="redo" title="oldinga"><img src="https://cdn-icons-png.flaticon.com/512/109/109617.png" alt=""></button>
+            </div>
+          </div>
+        </div>
         <div class="row buttons">
           <button class="clear-canvas">Tozalash</button>
           <button class="save-image">Saqlash</button>

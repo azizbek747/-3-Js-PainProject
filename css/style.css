@@ -166,7 +166,18 @@ canvas {
 
 
 
-.clear-canvas,
+.clear-canvas{
+  background: #ffffff;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    border: 1px solid #333;
+    outline: none;
+    transition: all 0.2s ease;
+}
 .save-image {
   background: #008fe2;
   color: #fff;
@@ -180,13 +191,19 @@ canvas {
   transition: all 0.2s ease;
 }
 
-.clear-canvas:hover,
-.save-image:hover {
-  background: #1f45db;
-}
-
 .save-image {
   margin-left: 10px;
+}
+
+.undo, .redo {
+  border: none;
+  background: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.redoUndo img {
+  width: 20px;
 }
 
 

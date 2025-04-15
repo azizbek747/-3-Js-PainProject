@@ -18,6 +18,8 @@ let isDrawing = false;
 let brushSize = 5;
 let selectedColor = "#000";
 let prevMouseX, prevMouseY, snapshot;
+let undoStack = [];
+let redoStack = [];
 
 window.addEventListener("load", () => {
   ctx.fillStyle = "#fff";
@@ -55,6 +57,10 @@ const startDraw = (e) => {
   ctx.strokeStyle = selectedColor;
   ctx.fillStyle = selectedColor;
   snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  // Holatni saqlash
+  undoStack.push(snapshot); // push old holat
+  redoStack = []; // redo ni tozalaymiz, yangi chizma boshlandi
 };
 
 // Drawing
@@ -131,6 +137,29 @@ colorPicker.addEventListener("input", () => {
   document.querySelector(".option.selected")?.classList.remove("selected");
 });
 
+// Undo
+const undo = () => {
+  if (undoStack.length > 0) {
+    const lastState = undoStack.pop();
+    redoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    ctx.putImageData(lastState, 0, 0);
+  }
+};
+
+// Redo
+const redo = () => {
+  if (redoStack.length > 0) {
+    const nextState = redoStack.pop();
+    undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    ctx.putImageData(nextState, 0, 0);
+  }
+};
+
+// Redo & Undo
+document.querySelector(".undo").addEventListener("click", undo);
+document.querySelector(".redo").addEventListener("click", redo);
+
+
 // Tozalash
 clearBtn.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -150,3 +179,4 @@ saveBtn.addEventListener("click", () => {
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", stopDraw);
+
