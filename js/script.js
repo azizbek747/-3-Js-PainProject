@@ -39,9 +39,18 @@ bgImagePicker.addEventListener("change", (e) => {
     const img = new Image();
     img.src = reader.result;
     img.onload = () => {
-      // Kichiklash yoki o'lchamga moslash
+      // Rasmni canvasga to‘liq yopadigan qilib chizish (cover usuli)
+      const scale = Math.max(
+        canvas.width / img.width,
+        canvas.height / img.height
+      );
+      const imgWidth = img.width * scale;
+      const imgHeight = img.height * scale;
+      const x = (canvas.width - imgWidth) / 2;
+      const y = (canvas.height - imgHeight) / 2;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, x, y, imgWidth, imgHeight);
     };
   };
   reader.readAsDataURL(file);
@@ -159,7 +168,6 @@ const redo = () => {
 document.querySelector(".undo").addEventListener("click", undo);
 document.querySelector(".redo").addEventListener("click", redo);
 
-
 // Tozalash
 clearBtn.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -179,4 +187,3 @@ saveBtn.addEventListener("click", () => {
 canvas.addEventListener("mousedown", startDraw);
 canvas.addEventListener("mousemove", drawing);
 canvas.addEventListener("mouseup", stopDraw);
-
