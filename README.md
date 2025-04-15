@@ -1,2 +1,2 @@
-View site -> https://app.netlify.com/sites/3-js-paintproject
+View site -> https://3-js-paintproject.netlify.app/
 
